@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/js/bootstrap.bundle.js">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="height">
+    <input type="text" id="weight">
+    <button onclick="calBmi()()">Calculate</button>
+    <div id="reply"></div>
+    <div id="replyTwo"></div>
+</body>
+</html>
+
+
+
+<script>
+    let myValue1 = document.getElementById('height')
+    let myValue2 = document.getElementById('weight')
+    let output = document.getElementById('reply')
+    let outputTwo = document.getElementById('replyTwo')
+
+    function calBmi() {
+        output.innerHTML  = ""
+        let bmi = Number(myValue2.value.trim()) / Number(myValue1.value.trim() ** 2)
+        if (myValue1.value.trim() === '' || myValue2.value.trim() === '') {
+            output.innerHTML = `<h1 class="text-danger">Please fill all fields</h1>`
+        } else {
+            output.innerHTML = `<h1>${bmi.toFixed(2)} m<sup>2</sup></h1>`
+        }
+        return function replies() {           
+            if (bmi < 18.5) {
+                outputTwo.innerHTML = `<h1 class="text-danger">You Are Underweight</h1>`
+            } else if (bmi >= 18.5 && bmi <= 24.9 ) {
+                outputTwo.innerHTML = `<h1 class="text-success">You Have A Normal Weight</h1>`
+            } else if (bmi >= 25 && bmi <= 29.9 ) {
+                outputTwo.innerHTML = `<h1 class="text-danger">You are Overweight</h1>`
+            } else {
+                outputTwo.innerHTML = `<h1 class="text-danger">You are Obese</h1>`
+            }
+        }
+    }
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/js/bootstrap.bundle.js">
+    <title>Body Mass Index</title>
+    <style>
+        main{
+            width: 35%;
+        }
+    </style>
+</head>
+<body>
+    <main class="rounded shadow p-3 m-auto">
+        <h1 class="text-center text-primary">Body Mass Index (BMI)</h1>
+        <input type="text" class="form-control mt-3" id="weight" placeholder="Enter Weight in kg">
+        <input type="text" class="form-control mt-3" id="height" placeholder="Enter Height in meter">
+        <button class="btn btn-primary mt-3 px-3" onclick="calBmi()()">Calculate BMI</button>
+        <div id="reply"></div>
+    </main>
+</body>
+</html>
+
+<script>
+
+    let calBmi = () => {
+        let weightVal = document.getElementById('weight').value
+        let heightVal = document.getElementById('height').value
+        let output = document.getElementById('reply')
+
+        let bmi = Number(weightVal) / (Number(heightVal) ** 2)
+        console.log(bmi);
+        
+        
+        
+        output.innerHTML = ""
+
+        output.innerHTML += `<hr class="my-4">`
+        if (weightVal.trim() === "" || heightVal.trim() === "") {
+            output.innerhtml = `<h1 class="text-danger">Please All fields are required</h1>`
+        } else {
+            output.innerHTML += `<h1 class="fw-bold">Your BMI is ${bmi.toFixed(2)} kg / m<sup>2</sup></h1>`
+        }
+
+        return weightFunc = () => {
+            if (bmi < 18.5) {
+                output.innerHTML += 
+                `<div class="answer">
+                    <h1 class="text-danger">You are Underweight</h1>
+                    <div class="secnd d-flex align-items-center justify-content-between mt-3">
+                        <span>click this button to get food plan</span>
+                        <button class="btn btn-success">Food Plan</button>
+                    </div>
+                </div>`
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                output.innerHTML += 
+                `<div class="answer">
+                    <h1 class="text-success">You have a Normal Weight</h1>
+                    <div class="secnd d-flex align-items-center mt-3">
+                        <span>Continue your food plan</span>
+                    </div>
+                </div>`
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                output.innerHTML += 
+                `<div class="answer">
+                    <h1 class="text-warning">You are Overweight</h1>
+                    <div class="secnd d-flex align-items-center justify-content-between mt-3">
+                        <span>click this button to get food plan</span>
+                        <button class="btn btn-success">Food Plan</button>
+                    </div>
+                </div>`
+            } else {
+                output.innerHTML += 
+                `<div class="answer mt-3">
+                    <h1 class="text-danger">You are Obese</h1>
+                    <div class="secnd d-flex align-items-center justify-content-between mt-3">
+                        <span>click this button to get food plan !!!</span>
+                        <button class="btn btn-success">Food Plan</button>
+                    </div>
+                </div>`
+            }
+        }
+        output.innerHTML += `<hr class="my-2">`
+    }
+</script>
